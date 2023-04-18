@@ -4,22 +4,35 @@ import React from "react";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "../node_modules/bootstrap/dist/css/bootstrap.css";
 import "../node_modules/bootstrap/dist/js/bootstrap";
-import { useEffect } from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
 import Nav from "./components/Navbar";
 import Home from "./mainpage/Home";
-import Card from "./components/card";
+
 import Product from "./product/product";
-import Products from "./product/products";
+import ProductsPage from "./product/products";
 import ProductNavbar from "./components/ProuductNavbar";
 import { Route, Routes, useLocation } from "react-router-dom";
-import Footer from "./components/Footer";
+import EmailVerify from "./other/singup/EmailVerify";
 import About from "./other/about";
-import Login from "./other/login";
-import Signup from "./other/singup";
+import Upload from "./other/upload";
+import Signup from "./other/singup/signup";
+import Login from "./other/singup/login";
 import Account from "./other/account";
-import Icon from "./components/Icon";
+
 export default function App() {
+  const [backendData, setBackendData] = useState([{}]);
+  useEffect(() => {
+    fetch("api")
+      .then((response) => response.json())
+      .then((data) => {
+        setBackendData(data);
+      }, []);
+  });
+  const isLoggedIn = () => {
+    return localStorage.getItem("token") !== null;
+  };
+
   let [darkmode, setDarkmode] = React.useState(() => {
     const savedMode = localStorage.getItem("darkMode");
     return savedMode ? JSON.parse(savedMode) : false;
@@ -27,32 +40,30 @@ export default function App() {
   React.useEffect(() => {
     localStorage.setItem("darkMode", JSON.stringify(darkmode));
   }, [darkmode]);
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    window.onload = () => {
-      setIsLoading(false);
-    };
-  }, []);
 
   // prettier-ignore
   let [Products, setProducts] = React.useState([
     {
-      title: "Srhythm NC10",
+      title: "Samsung galaxy A53 5G",
       price: "$79.99",
       gatag: "5G 6GB/128GB 16Mp",
       image: 1,
-      id: 1,
+      id: "1",
       stars: 5,
       shipping: "Free",
       isfav: false,
       brand: "Srhythm",
       color: "White",
+      size: "xl",
+      weight: "50g",
+      dimensions: "15x20",
+      description:
+        "this is samsung A57 2019 was created by samsung db beusdbhjcksjqvjbjkseqhviuesjbvu ",
     },
     {
       title: "TOZO T10",
       price: "$24.99",
-      gatag: "Gaming",
+      gatag: "5G 12GB/512GB 200Mp ",
       image: 2,
       id: 2,
       stars: 3,
@@ -60,11 +71,16 @@ export default function App() {
       isfav: false,
       brand: "TOZO",
       color: "Black",
+      size: "xl",
+      weight: "50g",
+      dimensions: "15x20",
+      description:
+        "this is samsung A57 2019 was created by samsung db beusdbhjcksjqvjbjkseqhviuesjbvu ",
     },
     {
       title: "Galaxy Watch 5 Pro",
       price: "$399.99",
-      gatag: "Gaming",
+      gatag: "5G 8GB/256GB 64Mp",
       image: 3,
       id: 3,
       stars: 4,
@@ -72,11 +88,16 @@ export default function App() {
       isfav: false,
       brand: "Samsung",
       color: "Black",
+      size: "xl",
+      weight: "50g",
+      dimensions: "15x20",
+      description:
+        "this is samsung A57 2019 was created by samsung db beusdbhjcksjqvjbjkseqhviuesjbvu ",
     },
     {
       title: "T-Rex Pro",
       price: "$138.99",
-      gatag: "Gaming",
+      gatag: "5G 8GB/256GB  60Mp ",
       image: 4,
       id: 4,
       stars: 4,
@@ -84,11 +105,16 @@ export default function App() {
       isfav: false,
       brand: "T-Rex",
       color: "Black",
+      size: "xl",
+      weight: "50g",
+      dimensions: "15x20",
+      description:
+        "this is samsung A57 2019 was created by samsung db beusdbhjcksjqvjbjkseqhviuesjbvu ",
     },
     {
       title: "Srhythm NC10",
       price: "$79.99",
-      gatag: "Gaming",
+      gatag: "5G 8GB/256GB  60Mp ",
       image: 1,
       id: 5,
       stars: 4,
@@ -96,6 +122,11 @@ export default function App() {
       isfav: false,
       brand: "Srhythm",
       color: "White",
+      size: "xl",
+      weight: "50g",
+      dimensions: "15x20",
+      description:
+        "this is samsung A57 2019 was created by samsung db beusdbhjcksjqvjbjkseqhviuesjbvu ",
     },
   ]);
   // prettier-ignore-end
@@ -126,12 +157,16 @@ export default function App() {
           path="/"
           element={
             <>
-              {!hide && <Nav updateDarkMode={updateDarkMode} />}{" "}
+              {!hide && (
+                <Nav updateDarkMode={updateDarkMode} isLoggedIn={isLoggedIn} />
+              )}{" "}
               <Home
                 updateDarkMode={darkmode}
                 toggleFav={toggleFav}
                 isfav={Products.isfav}
                 Products={Products}
+                backendData={backendData}
+                isLoggedIn={isLoggedIn}
               />
             </>
           }
@@ -140,15 +175,125 @@ export default function App() {
           path="/products"
           element={
             <>
-              <ProductNavbar updateDarkMode={updateDarkMode} />
-              <Product />
+              <ProductNavbar
+                updateDarkMode={updateDarkMode}
+                isLoggedIn={isLoggedIn}
+              />
+
+              <ProductsPage
+                updateDarkMode={darkmode}
+                toggleFav={toggleFav}
+                isfav={Products.isfav}
+                Products={Products}
+                isLoggedIn={isLoggedIn}
+              />
             </>
           }
         />
+        <Route
+          path="/product/:id"
+          element={
+            <>
+              <ProductNavbar
+                updateDarkMode={updateDarkMode}
+                isLoggedIn={isLoggedIn}
+              />
+
+              <Product
+                updateDarkMode={darkmode}
+                Products={Products}
+                isLoggedIn={isLoggedIn}
+              />
+            </>
+          }
+        />
+        <Route
+          path="/signup"
+          element={
+            <>
+              <ProductNavbar
+                updateDarkMode={updateDarkMode}
+                isLoggedIn={isLoggedIn}
+              />
+              <Signup
+                updateDarkMode={darkmode}
+                toggleFav={toggleFav}
+                isfav={Products.isfav}
+                Products={Products}
+                isLoggedIn={isLoggedIn}
+              />
+            </>
+          }
+        />
+        <Route
+          path="/users/:id/verify/:token"
+          element={
+            <>
+              <ProductNavbar
+                updateDarkMode={updateDarkMode}
+                isLoggedIn={isLoggedIn}
+              />
+
+              <EmailVerify
+                updateDarkMode={darkmode}
+                Products={Products}
+                isLoggedIn={isLoggedIn}
+              />
+            </>
+          }
+        />
+
+        <Route
+          path="/login"
+          element={
+            <>
+              <ProductNavbar
+                updateDarkMode={updateDarkMode}
+                isLoggedIn={isLoggedIn}
+              />
+              <Login
+                updateDarkMode={darkmode}
+                toggleFav={toggleFav}
+                isfav={Products.isfav}
+                Products={Products}
+                isLoggedIn={isLoggedIn}
+              />
+            </>
+          }
+        />
+
+        <Route
+          path="/account"
+          element={
+            <>
+              <ProductNavbar
+                updateDarkMode={updateDarkMode}
+                isLoggedIn={isLoggedIn}
+              />
+              <Account
+                updateDarkMode={darkmode}
+                toggleFav={toggleFav}
+                isfav={Products.isfav}
+                Products={Products}
+                isLoggedIn={isLoggedIn}
+              />
+            </>
+          }
+        />
+        <Route
+          path="/upload"
+          element={
+            <>
+              <ProductNavbar
+                updateDarkMode={updateDarkMode}
+                isLoggedIn={isLoggedIn}
+              />
+              <Upload updateDarkMode={darkmode} isLoggedIn={isLoggedIn} />
+            </>
+          }
+        />
+
         <Route path="/about" element={<About />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/account" element={<Account />} />
       </Routes>
     </main>
   );

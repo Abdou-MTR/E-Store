@@ -8,26 +8,31 @@ export default function Navbar(props) {
     localStorage.getItem("darkmode") === "true"
   );
 
+  let isLoggedIn = localStorage.getItem("token");
+  console.log(isLoggedIn);
+
   function darkmodeChanger() {
     const newDarkmode = !darkmode;
     setDarkMode(newDarkmode);
     localStorage.setItem("darkmode", newDarkmode.toString());
     props.updateDarkMode(newDarkmode);
-    window.location.reload();
   }
 
   return (
     <>
       <nav class="navbar navbar-expand-lg  ">
         <div class="container-fluid">
+          {" "}
           <div class=" col-6 col-lg-2 ">
-            {" "}
-            <img
-              src={darkmode ? logoDarkmode : logo}
-              alt="logo"
-              id="logo"
-              className="img-fluid"
-            />
+            <Link to={`/`}>
+              {" "}
+              <img
+                src={darkmode ? logoDarkmode : logo}
+                alt="logo"
+                id="logo"
+                className="img-fluid"
+              />
+            </Link>
           </div>{" "}
           <button
             class="navbar-toggler mt-sm-3"
@@ -92,21 +97,27 @@ export default function Navbar(props) {
             </ul>
 
             <div className="main-icons-Nav  ms-sm-3 ms-lg-2 justify-content-md-start justify-content-lg-end  ">
-              <div class="d-flex flex-row">
-                {" "}
-                <img
-                  src={darkmode ? icons.profileDarkmode : icons.profile}
-                  alt="profile"
-                />
-                <a
-                  class="icon-text  "
-                  id="navEelment"
-                  aria-current="page"
-                  href="#"
-                >
-                  My account
-                </a>
-              </div>
+              {isLoggedIn ? (
+                <Link to={`/account`} className="acc">
+                  <div class="d-flex flex-row ">
+                    <img
+                      src={darkmode ? icons.profileDarkmode : icons.profile}
+                      alt="profile"
+                    />
+                    <span class="icon-text">My account</span>
+                  </div>
+                </Link>
+              ) : (
+                <Link to={`/signup`} className="acc">
+                  <div class="d-flex flex-row">
+                    <img
+                      src={darkmode ? icons.profileDarkmode : icons.profile}
+                      alt="profile"
+                    />
+                    <span class="icon-text">Sign up</span>
+                  </div>
+                </Link>
+              )}
 
               <div class="d-flex flex-row">
                 {" "}

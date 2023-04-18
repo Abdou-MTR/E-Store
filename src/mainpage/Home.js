@@ -1,6 +1,5 @@
 import Main from "../components/main";
 import React from "react";
-import CardProduct from "../components/card";
 import MainProducts from "./mainproducts";
 export default function Home(props) {
   return (

@@ -1,9 +1,10 @@
 import React from "react";
-import { useEffect } from "react";
-import { useState } from "react";
+
 import Icon from "../components/Icon";
 
 export default function Meme(props) {
+
+
   return (
     //create a input field
     <main class="d-flex flex-column">
@@ -46,6 +47,7 @@ export default function Meme(props) {
               <button className=" Discover-Products" href="#">
                 Discover Products
               </button>
+          
             </div>
           </div>
         </div>

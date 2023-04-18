@@ -3,14 +3,12 @@ import image1 from "../images/image 1.png";
 import image2 from "../images/image 2.png";
 import image3 from "../images/image 3.png";
 import image4 from "../images/image 4.png";
-import Icon from "./Icon";
 
 import "../App.css";
 import { Link } from "react-router-dom";
 export default function CardProduct(props) {
   let [liked, setLiked] = React.useState(props.isfav);
 
-  console.log(props.id);
   let likedHandler = () => {
     setLiked(!liked);
     props.toggleFav(props.id, liked);
@@ -64,12 +62,12 @@ export default function CardProduct(props) {
           <h5 className="card-price">{props.price}</h5>
         </div>
         <div className=" gatag d-flex ">
-          <a className="card-text  text-decoration-none" href="#">
+          <h6 className="card-text  text-decoration-none" href="#">
             {props.gatag}
-          </a>
+          </h6>
         </div>{" "}
-        <div className=" d-flex mt-3  mt-lg-2 ">{stars}</div>
-        <button className=" cart-btn mt-3 mt-sm-4">Add to cart</button>
+        <div className=" d-flex mt-2  mt-lg-3 ">{stars}</div>
+        <button className=" cart-btn mt-3 mt-lg-3">Add to cart</button>
       </div>
     </>
   );

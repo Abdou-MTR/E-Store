@@ -1,0 +1,245 @@
+import React from "react";
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import logo from "../images/Logo.svg";
+import logoDarkmode from "../images/Logo-Darkmode.svg";
+import axios from "axios";
+
+export default function MainProducts(props) {
+  const [productData, setProductData] = useState({
+    productName: "",
+    miniDescription: "",
+    category: "",
+    rating: "",
+    price: "",
+    brand: "",
+    weight: "",
+    size: "",
+    dimensions: "",
+    shippingFees: "",
+    description: "",
+    image: null,
+  });
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setProductData({ ...productData, [name]: value });
+  };
+
+  // const handleImageChange = (event) => {
+  //   setProductData({ ...productData, image: event.target.files[0] });
+  // };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const formData = new FormData();
+    formData.append("productName", productData.productName);
+    formData.append("miniDescription", productData.miniDescription);
+    formData.append("category", productData.category);
+    formData.append("rating", productData.rating);
+    formData.append("price", productData.price);
+    formData.append("brand", productData.brand);
+    formData.append("weight", productData.weight);
+    formData.append("size", productData.size);
+    formData.append("dimensions", productData.dimensions);
+    formData.append("shippingFees", productData.shippingFees);
+    formData.append("description", productData.description);
+    formData.append("image", productData.image);
+    try {
+      await axios.post("http://localhost:5000/api/upload", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      alert("Product uploaded successfully!");
+      // clear form data
+      setProductData({
+        productName: "",
+        miniDescription: "",
+        category: "",
+        rating: "",
+        price: "",
+        brand: "",
+        weight: "",
+        size: "",
+        dimensions: "",
+        shippingFees: "",
+        description: "",
+        image: "",
+      });
+    } catch (error) {
+      console.log(error);
+      alert("Failed to upload product");
+    }
+  };
+  console.log(productData);
+
+  return (
+    <main>
+      <div className="d-flex justify-content-center ">
+        <div className="d-flex flex-column upload">
+          <Link to="/">
+            <img
+              src={props.updateDarkMode ? logoDarkmode : logo}
+              alt="logo"
+              className="mb-4 text-center mt-4 img-fluid "
+            />
+          </Link>
+          <h2>Upload Product</h2>
+          <h6 className="mb-5 up-ad">Hey there, welcome back Admin</h6>
+        </div>
+      </div>
+      <div className="Product-upload">
+        <form
+          method="POST"
+          action="/api/upload"
+          encType="multipart/form-data"
+          onSubmit={handleSubmit}
+        >
+          <div className="group">
+            <input
+              type="text"
+              required="required"
+              name="productName"
+              onChange={handleInputChange}
+              value={productData.productName}
+            />
+            <span class="highlight"></span>
+            <span class="bar"></span>
+            <label htmlFor="name">Product Name</label>
+          </div>
+          <div class="group">
+            <input
+              type="text"
+              required="required"
+              name="miniDescription"
+              value={productData.miniDescription}
+              onChange={handleInputChange}
+            />
+            <span class="highlight"></span>
+            <span class="bar"></span>
+            <label htmlFor="miniDescription">Product Mini Description</label>
+          </div>
+          <div class="group">
+            <input
+              type="text"
+              required="required"
+              name="category"
+              value={productData.category}
+              onChange={handleInputChange}
+            />
+            <span class="highlight"></span>
+            <span class="bar"></span>
+            <label htmlFor="category">Product Categorie</label>
+          </div>
+          <div class="group">
+            <input
+              required="required"
+              name="rating"
+              type="number"
+              id="rating"
+              min="0"
+              max="5"
+              step="0.1"
+              value={productData.rating}
+              onChange={handleInputChange}
+            />
+            <span class="highlight"></span>
+            <span class="bar"></span>
+            <label htmlFor="rating">Product Rating</label>
+          </div>
+          <div class="group">
+            <input
+              type="number"
+              required="required"
+              name="price"
+              value={productData.price}
+              onChange={handleInputChange}
+            />
+            <span class="highlight"></span>
+            <span class="bar"></span>
+            <label htmlFor="price">Product Price</label>
+          </div>
+          <div class="group">
+            <input
+              type="text"
+              required="required"
+              name="brand"
+              value={productData.brand}
+              onChange={handleInputChange}
+            />
+            <span class="highlight"></span>
+            <span class="bar"></span>
+            <label htmlFor="brand">Product Brand</label>
+          </div>
+          <div class="group">
+            <input
+              type="number"
+              required="required"
+              name="weight"
+              value={productData.weight}
+              onChange={handleInputChange}
+            />
+            <span class="highlight"></span>
+            <span class="bar"></span>
+            <label htmlFor="weight">Product Weight</label>
+          </div>
+          <div class="group">
+            <input
+              type="text"
+              required="required"
+              name="size"
+              value={productData.size}
+              onChange={handleInputChange}
+            />
+            <span class="highlight"></span>
+            <span class="bar"></span>
+            <label htmlFor="size">Product Size</label>
+          </div>
+          <div class="group">
+            <input
+              type="text"
+              required="required"
+              name="dimensions"
+              value={productData.dimensions}
+              onChange={handleInputChange}
+            />
+            <span class="highlight"></span>
+            <span class="bar"></span>
+            <label htmlFor="dimensions">Product dimensions</label>
+          </div>
+          <div class="group">
+            <input
+              type="text"
+              required="required"
+              name="shippingFees"
+              value={productData.shippingFees}
+              onChange={handleInputChange}
+            />
+            <span class="highlight"></span>
+            <span class="bar"></span>
+            <label htmlFor="shippingFees">Product Shipping fees</label>
+          </div>
+
+          <div class="group">
+            <textarea
+              type="textarea"
+              rows="5"
+              required="required"
+              name="description"
+              value={productData.description}
+              onChange={handleInputChange}
+            ></textarea>
+            <span class="highlight"></span>
+            <span class="bar"></span>
+            <label htmlFor="description">Product Description</label>
+          </div>
+
+          <button class="add-btn" type="submit" name="submit">
+            Upload Product
+          </button>
+        </form>
+      </div>
+    </main>
+  );
+}
