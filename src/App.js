@@ -234,11 +234,20 @@ export default function App() {
                 isLoggedIn={isLoggedIn}
               />
 
-              <EmailVerify
-                updateDarkMode={darkmode}
-                Products={Products}
+              <EmailVerify updateDarkMode={darkmode} isLoggedIn={isLoggedIn} />
+            </>
+          }
+        />
+        <Route
+          path="/about-us"
+          element={
+            <>
+              <ProductNavbar
+                updateDarkMode={updateDarkMode}
                 isLoggedIn={isLoggedIn}
               />
+
+              <About updateDarkMode={darkmode} isLoggedIn={isLoggedIn} />
             </>
           }
         />

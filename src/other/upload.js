@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import logo from "../images/Logo.svg";
 import logoDarkmode from "../images/Logo-Darkmode.svg";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 export default function MainProducts(props) {
   const [productData, setProductData] = useState({
@@ -25,10 +26,15 @@ export default function MainProducts(props) {
     const { name, value } = event.target;
     setProductData({ ...productData, [name]: value });
   };
-
   // const handleImageChange = (event) => {
   //   setProductData({ ...productData, image: event.target.files[0] });
   // };
+  const handleImageChange = (event) => {
+    setProductData({
+      ...productData,
+      image: event.target.files[0],
+    });
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -46,12 +52,18 @@ export default function MainProducts(props) {
     formData.append("description", productData.description);
     formData.append("image", productData.image);
     try {
-      await axios.post("http://localhost:5000/api/upload", formData, {
+      await axios.post("http://localhost:5000/upload/products", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
       });
-      alert("Product uploaded successfully!");
+      console.log(formData);
+
+      Swal.fire({
+        icon: "success",
+        title: "Product uploaded!",
+        showConfirmButton: true,
+      });
       // clear form data
       setProductData({
         productName: "",
@@ -68,6 +80,8 @@ export default function MainProducts(props) {
         image: "",
       });
     } catch (error) {
+      console.log(formData);
+
       console.log(error);
       alert("Failed to upload product");
     }
@@ -234,7 +248,18 @@ export default function MainProducts(props) {
             <span class="bar"></span>
             <label htmlFor="description">Product Description</label>
           </div>
-
+          <div className="form-group">
+            <label htmlFor="image">Image:</label>
+            <input
+              type="file"
+              className="form-control-file"
+              id="image"
+              name="image"
+              accept="image/*"
+              onChange={handleImageChange}
+              required
+            />
+          </div>
           <button class="add-btn" type="submit" name="submit">
             Upload Product
           </button>
