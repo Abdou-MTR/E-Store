@@ -466,7 +466,7 @@ img.toggleButton {
 
 @media (max-width: 600px) {
   #description {
-    font-size: 16px;
+    font-size: 12px;
     width: 90%;
   }
   #Title {
