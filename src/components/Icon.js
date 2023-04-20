@@ -5,8 +5,7 @@ import bag from "../icons/bag.svg";
 import Night from "../icons/change to dark mode.svg";
 import Light from "../icons/change to light mode.svg"
 import toggleButton from "../icons/toggle-button.svg";
-import market from "../icons/market.svg";
-import marketDarkmode from "../icons/market-Darkmode.svg";
+
 import StarEmpty from "../icons/star Empty.svg";
 import StarFilled from "../icons/star Filled.svg";
 import bagDarkmode from "../icons/Bag-Darkmode.svg";
@@ -23,8 +22,7 @@ export default {
   Light:Light,
   toggleButton: toggleButton,
   toggleButtonDarkmode:toggleButtonDarkmode,
-  market: market,
-  marketDarkmode:marketDarkmode,
+
   StarEmpty: StarEmpty,
   StarFilled: StarFilled,
   favoriteDarkmode: favoriteDarkmode,

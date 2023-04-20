@@ -1,10 +1,9 @@
 import React from "react";
 
 import Icon from "../components/Icon";
-
+import market from "../icons/Market.png";
+import marketDarkmode from "../icons/Market-Darkmode.png";
 export default function Meme(props) {
-
-
   return (
     //create a input field
     <main class="d-flex flex-column">
@@ -47,13 +46,12 @@ export default function Meme(props) {
               <button className=" Discover-Products" href="#">
                 Discover Products
               </button>
-          
             </div>
           </div>
         </div>
         <div className="Market-Image d-flex col-8 col-md-6 col-lg-6 col-sm-12 justify-content-center justify-content-lg-end">
           <img
-            src={props.updateDarkMode ? Icon.marketDarkmode : Icon.market}
+            src={props.updateDarkMode ? marketDarkmode : market}
             alt="..."
             class="img-fluid "
           />
