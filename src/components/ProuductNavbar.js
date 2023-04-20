@@ -72,9 +72,8 @@ export default function Navbar(props) {
                   href="#"
                 >
                   Categories
-                </a>
-              </li>
-              <li class="nav-item">
+                </a> </li>
+              <Link to="/about-us">  <li class="nav-item">
                 <a
                   class="nav-link active  "
                   id="navEelment"
@@ -83,17 +82,21 @@ export default function Navbar(props) {
                 >
                   Contact-us
                 </a>
-              </li>
-              <li class="nav-item">
-                <a
-                  class="nav-link active "
-                  id="navEelment"
-                  aria-current="page"
-                  href="#"
-                >
-                  About-us
-                </a>
-              </li>
+              </li></Link>             
+            
+              <Link to="/about-us">
+                {" "}
+                <li class="nav-item">
+                  <a
+                    class="nav-link active "
+                    id="navEelment"
+                    aria-current="page"
+                    href="#"
+                  >
+                    About-us
+                  </a>
+                </li>
+              </Link>
             </ul>
 
             <div className="main-icons-Nav  ms-sm-3 ms-lg-2 justify-content-md-start justify-content-lg-end  ">

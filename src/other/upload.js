@@ -8,7 +8,7 @@ import Swal from "sweetalert2";
 
 export default function MainProducts(props) {
   const [productData, setProductData] = useState({
-    productName: "",
+    name: "",
     miniDescription: "",
     category: "",
     rating: "",
@@ -39,7 +39,7 @@ export default function MainProducts(props) {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData();
-    formData.append("productName", productData.productName);
+    formData.append("productName", productData.name);
     formData.append("miniDescription", productData.miniDescription);
     formData.append("category", productData.category);
     formData.append("rating", productData.rating);
@@ -114,9 +114,9 @@ export default function MainProducts(props) {
             <input
               type="text"
               required="required"
-              name="productName"
+              name="name"
               onChange={handleInputChange}
-              value={productData.productName}
+              value={productData.name}
             />
             <span class="highlight"></span>
             <span class="bar"></span>
