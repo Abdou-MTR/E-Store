@@ -1,5 +1,4 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../images/Logo.svg";
 import logoDarkmode from "../images/Logo-Darkmode.svg";
@@ -7,264 +6,296 @@ import axios from "axios";
 import Swal from "sweetalert2";
 
 export default function MainProducts(props) {
-  const [productData, setProductData] = useState({
-    name: "",
-    miniDescription: "",
-    category: "",
-    rating: "",
-    price: "",
-    brand: "",
-    weight: "",
-    size: "",
-    dimensions: "",
-    shippingFees: "",
-    description: "",
-    image: null,
-  });
+  const [name, setName] = useState("");
+  const [miniDescription, setMiniDescription] = useState("");
+  const [category, setCategory] = useState("");
+  const [rating, setRating] = useState("");
+  const [price, setPrice] = useState("");
+  const [brand, setBrand] = useState("");
+  const [weight, setWeight] = useState("");
+  const [size, setSize] = useState("");
+  const [dimensions, setDimensions] = useState("");
+  const [shippingFees, setShippingFees] = useState("");
+  const [description, setDescription] = useState("");
+  const [image, setImage] = useState(null);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
-    setProductData({ ...productData, [name]: value });
-  };
-  // const handleImageChange = (event) => {
-  //   setProductData({ ...productData, image: event.target.files[0] });
-  // };
-  const handleImageChange = (event) => {
-    setProductData({
-      ...productData,
-      image: event.target.files[0],
-    });
+    switch (name) {
+      case "name":
+        setName(value);
+        break;
+      case "miniDescription":
+        setMiniDescription(value);
+        break;
+      case "category":
+        setCategory(value);
+        break;
+      case "rating":
+        setRating(value);
+        break;
+      case "price":
+        setPrice(value);
+        break;
+      case "brand":
+        setBrand(value);
+        break;
+      case "weight":
+        setWeight(value);
+        break;
+      case "size":
+        setSize(value);
+        break;
+      case "dimensions":
+        setDimensions(value);
+        break;
+      case "shippingFees":
+        setShippingFees(value);
+        break;
+      case "description":
+        setDescription(value);
+        break;
+      case "image":
+        setImage(event.target.files[0]);
+        break;
+      default:
+        break;
+    }
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData();
-    formData.append("productName", productData.name);
-    formData.append("miniDescription", productData.miniDescription);
-    formData.append("category", productData.category);
-    formData.append("rating", productData.rating);
-    formData.append("price", productData.price);
-    formData.append("brand", productData.brand);
-    formData.append("weight", productData.weight);
-    formData.append("size", productData.size);
-    formData.append("dimensions", productData.dimensions);
-    formData.append("shippingFees", productData.shippingFees);
-    formData.append("description", productData.description);
-    formData.append("image", productData.image);
+    formData.append("productName", name);
+    formData.append("miniDescription", miniDescription);
+    formData.append("category", category);
+    formData.append("rating", rating);
+    formData.append("price", price);
+    formData.append("brand", brand);
+    formData.append("weight", weight);
+    formData.append("size", size);
+    formData.append("dimensions", dimensions);
+    formData.append("shippingFees", shippingFees);
+    formData.append("description", description);
+    formData.append("productImage", image);
     try {
       await axios.post("http://localhost:5000/upload/products", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
       });
-      console.log(formData);
-
       Swal.fire({
         icon: "success",
-        title: "Product uploaded!",
-        showConfirmButton: true,
+        title: "Product added successfully!",
+        showConfirmButton: false,
+        timer: 1500,
       });
-      // clear form data
-      setProductData({
-        productName: "",
-        miniDescription: "",
-        category: "",
-        rating: "",
-        price: "",
-        brand: "",
-        weight: "",
-        size: "",
-        dimensions: "",
-        shippingFees: "",
-        description: "",
-        image: "",
-      });
+      setName("");
+      setMiniDescription("");
+      setCategory("");
+      setRating("");
+      setPrice("");
+      setBrand("");
+      setWeight("");
+      setSize("");
+      setDimensions("");
+      setShippingFees("");
+      setDescription("");
+      setImage(null);
     } catch (error) {
-      console.log(formData);
-
-      console.log(error);
-      alert("Failed to upload product");
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Something went wrong!",
+      });
+      console.error(error);
     }
   };
-  console.log(productData);
+  console.log(formData);
 
   return (
-    <main>
-      <div className="d-flex justify-content-center ">
-        <div className="d-flex flex-column upload">
-          <Link to="/">
-            <img
-              src={props.updateDarkMode ? logoDarkmode : logo}
-              alt="logo"
-              className="mb-4 text-center mt-4 img-fluid "
-            />
-          </Link>
-          <h2>Upload Product</h2>
-          <h6 className="mb-5 up-ad">Hey there, welcome back Admin</h6>
+    <div className="container">
+      <div className="row justify-content-center">
+        <div className="col-lg-7 col-md-9 col-sm-12">
+          <div className="d-flex align-items-center justify-content-between mb-4">
+            <Link to="/">
+              <img
+                src={props.darkmode ? logoDarkmode : logo}
+                alt="Logo"
+                className="logo"
+              />
+            </Link>
+            <h2>Add Product</h2>
+            <div className="theme-switch-wrapper">
+              <label className="theme-switch" htmlFor="checkbox">
+                <input
+                  type="checkbox"
+                  id="checkbox"
+                  onChange={props.handleDarkmodeChange}
+                  checked={props.darkmode}
+                />
+                <div className="slider round"></div>
+              </label>
+            </div>
+          </div>
+          <form onSubmit={handleSubmit}>
+            <div className="form-group">
+              <label htmlFor="name">Name</label>
+              <input
+                type="text"
+                className="form-control"
+                id="name"
+                name="name"
+                value={name}
+                onChange={handleInputChange}
+                required
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="miniDescription">Mini Description</label>
+              <textarea
+                className="form-control"
+                id="miniDescription"
+                name="miniDescription"
+                rows="2"
+                value={miniDescription}
+                onChange={handleInputChange}
+                required
+              ></textarea>
+            </div>
+            <div className="form-group">
+              <label htmlFor="category">Category</label>
+              <input
+                type="text"
+                className="form-control"
+                id="category"
+                name="category"
+                value={category}
+                onChange={handleInputChange}
+                required
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="rating">Rating</label>
+              <input
+                type="number"
+                className="form-control"
+                id="rating"
+                name="rating"
+                min="1"
+                max="5"
+                step="0.1"
+                value={rating}
+                onChange={handleInputChange}
+                required
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="price">Price</label>
+              <input
+                type="number"
+                className="form-control"
+                id="price"
+                name="price"
+                min="1"
+                step="0.01"
+                value={price}
+                onChange={handleInputChange}
+                required
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="brand">Brand</label>
+              <input
+                type="text"
+                className="form-control"
+                id="brand"
+                name="brand"
+                value={brand}
+                onChange={handleInputChange}
+                required
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="weight">Weight</label>
+              <input
+                type="text"
+                className="form-control"
+                id="weight"
+                name="weight"
+                value={weight}
+                onChange={handleInputChange}
+                required
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="size">Size</label>
+              <input
+                type="text"
+                className="form-control"
+                id="size"
+                name="size"
+                value={size}
+                onChange={handleInputChange}
+                required
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="dimensions">Dimensions</label>
+              <input
+                type="text"
+                className="form-control"
+                id="dimensions"
+                name="dimensions"
+                value={dimensions}
+                onChange={handleInputChange}
+                required
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="shippingFees">Shipping Fees</label>
+              <input
+                type="number"
+                className="form-control"
+                id="shippingFees"
+                name="shippingFees"
+                min="0"
+                step="0.01"
+                value={shippingFees}
+                onChange={handleInputChange}
+                required
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="description">Description</label>
+              <textarea
+                className="form-control"
+                id="description"
+                name="description"
+                rows="5"
+                value={description}
+                onChange={handleInputChange}
+                required
+              ></textarea>
+            </div>
+            <div className="form-group">
+              <label htmlFor="image">Image</label>
+              <input
+                type="file"
+                className="form-control-file"
+                id="image"
+                name="image"
+                accept="image/*"
+                onChange={handleInputChange}
+                required
+              />
+            </div>
+            <button type="submit" className="btn btn-primary">
+              Submit
+            </button>
+          </form>
         </div>
       </div>
-      <div className="Product-upload">
-        <form
-          method="POST"
-          action="/api/upload"
-          encType="multipart/form-data"
-          onSubmit={handleSubmit}
-        >
-          <div className="group">
-            <input
-              type="text"
-              required="required"
-              name="name"
-              onChange={handleInputChange}
-              value={productData.name}
-            />
-            <span class="highlight"></span>
-            <span class="bar"></span>
-            <label htmlFor="name">Product Name</label>
-          </div>
-          <div class="group">
-            <input
-              type="text"
-              required="required"
-              name="miniDescription"
-              value={productData.miniDescription}
-              onChange={handleInputChange}
-            />
-            <span class="highlight"></span>
-            <span class="bar"></span>
-            <label htmlFor="miniDescription">Product Mini Description</label>
-          </div>
-          <div class="group">
-            <input
-              type="text"
-              required="required"
-              name="category"
-              value={productData.category}
-              onChange={handleInputChange}
-            />
-            <span class="highlight"></span>
-            <span class="bar"></span>
-            <label htmlFor="category">Product Categorie</label>
-          </div>
-          <div class="group">
-            <input
-              required="required"
-              name="rating"
-              type="number"
-              id="rating"
-              min="0"
-              max="5"
-              step="0.1"
-              value={productData.rating}
-              onChange={handleInputChange}
-            />
-            <span class="highlight"></span>
-            <span class="bar"></span>
-            <label htmlFor="rating">Product Rating</label>
-          </div>
-          <div class="group">
-            <input
-              type="number"
-              required="required"
-              name="price"
-              value={productData.price}
-              onChange={handleInputChange}
-            />
-            <span class="highlight"></span>
-            <span class="bar"></span>
-            <label htmlFor="price">Product Price</label>
-          </div>
-          <div class="group">
-            <input
-              type="text"
-              required="required"
-              name="brand"
-              value={productData.brand}
-              onChange={handleInputChange}
-            />
-            <span class="highlight"></span>
-            <span class="bar"></span>
-            <label htmlFor="brand">Product Brand</label>
-          </div>
-          <div class="group">
-            <input
-              type="number"
-              required="required"
-              name="weight"
-              value={productData.weight}
-              onChange={handleInputChange}
-            />
-            <span class="highlight"></span>
-            <span class="bar"></span>
-            <label htmlFor="weight">Product Weight</label>
-          </div>
-          <div class="group">
-            <input
-              type="text"
-              required="required"
-              name="size"
-              value={productData.size}
-              onChange={handleInputChange}
-            />
-            <span class="highlight"></span>
-            <span class="bar"></span>
-            <label htmlFor="size">Product Size</label>
-          </div>
-          <div class="group">
-            <input
-              type="text"
-              required="required"
-              name="dimensions"
-              value={productData.dimensions}
-              onChange={handleInputChange}
-            />
-            <span class="highlight"></span>
-            <span class="bar"></span>
-            <label htmlFor="dimensions">Product dimensions</label>
-          </div>
-          <div class="group">
-            <input
-              type="text"
-              required="required"
-              name="shippingFees"
-              value={productData.shippingFees}
-              onChange={handleInputChange}
-            />
-            <span class="highlight"></span>
-            <span class="bar"></span>
-            <label htmlFor="shippingFees">Product Shipping fees</label>
-          </div>
-
-          <div class="group">
-            <textarea
-              type="textarea"
-              rows="5"
-              required="required"
-              name="description"
-              value={productData.description}
-              onChange={handleInputChange}
-            ></textarea>
-            <span class="highlight"></span>
-            <span class="bar"></span>
-            <label htmlFor="description">Product Description</label>
-          </div>
-          <div className="form-group">
-            <label htmlFor="image">Image:</label>
-            <input
-              type="file"
-              className="form-control-file"
-              id="image"
-              name="image"
-              accept="image/*"
-              onChange={handleImageChange}
-              required
-            />
-          </div>
-          <button class="add-btn" type="submit" name="submit">
-            Upload Product
-          </button>
-        </form>
-      </div>
-    </main>
+    </div>
   );
 }
