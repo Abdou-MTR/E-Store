@@ -48,3 +48,24 @@ body {
   -moz-osx-font-smoothing: grayscale;
   color: var(--var-color-30-2);
 }
+.Favorite-Title {
+  font-family: "Work Sans", sans-serif;
+  font-weight: 600;
+}
+.Favorite-num {
+  font-family: "Work Sans", sans-serif;
+  font-weight: 300;
+}
+.FavCardImg img {
+  width: 303px;
+  height: 306px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.FavCardImg {
+  width: 405px;
+  height: 403px;
+  padding: 50px;
+  background-color: #ebecee;
+}

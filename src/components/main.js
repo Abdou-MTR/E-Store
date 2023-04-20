@@ -1,6 +1,5 @@
 import React from "react";
 
-import Icon from "../components/Icon";
 import market from "../icons/Market.png";
 import marketDarkmode from "../icons/Market-Darkmode.png";
 export default function Meme(props) {

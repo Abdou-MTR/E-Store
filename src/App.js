@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 
 import Nav from "./components/Navbar";
 import Home from "./mainpage/Home";
-
+import Favorite from "./Favorites/Favorites";
 import Product from "./product/product";
 import ProductsPage from "./product/products";
 import ProductNavbar from "./components/ProuductNavbar";
@@ -251,7 +251,6 @@ export default function App() {
             </>
           }
         />
-
         <Route
           path="/login"
           element={
@@ -270,7 +269,6 @@ export default function App() {
             </>
           }
         />
-
         <Route
           path="/account"
           element={
@@ -301,7 +299,18 @@ export default function App() {
             </>
           }
         />
-
+        <Route
+          path="/favorites"
+          element={
+            <>
+              <ProductNavbar
+                updateDarkMode={updateDarkMode}
+                isLoggedIn={isLoggedIn}
+              />
+              <Favorite updateDarkMode={darkmode} isLoggedIn={isLoggedIn} />
+            </>
+          }
+        />
         <Route path="/about" element={<About />} />
       </Routes>
     </main>
