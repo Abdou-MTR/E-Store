@@ -136,7 +136,6 @@ export default function MainProducts(props) {
           </div>
 
           <div className="group">
-            <label>Product Categorie</label>
             <select
               name="category"
               required="required"
