@@ -30,7 +30,7 @@ export default function Meme(props) {
             <div class="d-flex justify-content-sm-center  justify-content-lg-start ">
               {" "}
               <p
-                class="mb-3 ms-lg-5 justify-content-center justify-content-lg-start col-lg-10 "
+                class="mb-3 ms-lg-5 ms-3 justify-content-center justify-content-lg-start col-lg-10 "
                 id="description"
               >
                 <br /> Free shipping on millions of items, Get the best of
@@ -49,11 +49,11 @@ export default function Meme(props) {
             </div>
           </div>
         </div>
-        <div className="Market-Image d-flex col-8 col-md-6 col-lg-6 col-sm-12 justify-content-center justify-content-lg-end">
+        <div className="Market-Image d-flex col-8 col-md-6 col-lg-6 col-sm-12 justify-content-center">
           <img
             src={props.updateDarkMode ? marketDarkmode : market}
             alt="..."
-            class="img-fluid "
+            class="img-fluid"
           />
         </div>
       </div>

@@ -72,18 +72,22 @@ export default function Navbar(props) {
                   href="#"
                 >
                   Categories
-                </a> </li>
-              <Link to="/about-us">  <li class="nav-item">
-                <a
-                  class="nav-link active  "
-                  id="navEelment"
-                  aria-current="page"
-                  href="#"
-                >
-                  Contact-us
-                </a>
-              </li></Link>             
-            
+                </a>{" "}
+              </li>
+              <Link to="/about-us">
+                {" "}
+                <li class="nav-item">
+                  <a
+                    class="nav-link active  "
+                    id="navEelment"
+                    aria-current="page"
+                    href="#"
+                  >
+                    Contact-us
+                  </a>
+                </li>
+              </Link>
+
               <Link to="/about-us">
                 {" "}
                 <li class="nav-item">
