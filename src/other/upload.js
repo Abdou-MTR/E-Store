@@ -134,17 +134,21 @@ export default function MainProducts(props) {
             <span class="bar"></span>
             <label htmlFor="miniDescription">Product Mini Description</label>
           </div>
-          <div class="group">
-            <input
-              type="text"
-              required="required"
+
+          <div className="group">
+            <label>Product Categorie</label>
+            <select
               name="category"
+              required="required"
               value={productData.category}
               onChange={handleInputChange}
-            />
-            <span class="highlight"></span>
-            <span class="bar"></span>
-            <label htmlFor="category">Product Categorie</label>
+            >
+              <option value="">--Select Categorie--</option>
+              <option value="Keyboards">Keyboards</option>
+              <option value="blue">Smartphones</option>
+              <option value="Graphic cards">Graphic cards</option>
+              <option value="Monitors">Monitors</option>
+            </select>
           </div>
           <div class="group">
             <input
