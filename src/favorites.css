@@ -167,8 +167,8 @@ body {
   .FavCardImg {
     position: relative;
     width: var(--var-WidthSmall);
-    height: 3px;
-   
+    height: 333px;
+
     background-color: var(--var-Fav-Color);
   }
   .FavRemoveButt {
