@@ -1,11 +1,11 @@
 import "./App.css";
 
-import React from "react";
+import React, { Fragment } from "react";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "../node_modules/bootstrap/dist/css/bootstrap.css";
 import "../node_modules/bootstrap/dist/js/bootstrap";
 import { useEffect, useState } from "react";
-
+import Loading from "./other/Loading";
 import Nav from "./components/Navbar";
 import Home from "./mainpage/Home";
 import Favorite from "./Favorites/Favorites";
@@ -150,169 +150,194 @@ export default function App() {
   function updateDarkMode(newValue) {
     setDarkmode(newValue);
   }
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => setLoading(false), 500);
+  }, []);
   return (
-    <main className={`app ${darkmode ? "darkmode" : ""}`}>
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <>
-              {!hide && (
-                <Nav updateDarkMode={updateDarkMode} isLoggedIn={isLoggedIn} />
-              )}{" "}
-              <Home
-                updateDarkMode={darkmode}
-                toggleFav={toggleFav}
-                isfav={Products.isfav}
-                Products={Products}
-                backendData={backendData}
-                isLoggedIn={isLoggedIn}
-              />
-            </>
-          }
-        />
-        <Route
-          path="/products"
-          element={
-            <>
-              <ProductNavbar
-                updateDarkMode={updateDarkMode}
-                isLoggedIn={isLoggedIn}
-              />
+    <Fragment>
+      {loading ? (
+        <Fragment>
+          {" "}
+          <ProductNavbar
+            updateDarkMode={updateDarkMode}
+            isLoggedIn={isLoggedIn}
+          />{" "}
+          <Loading />{" "}
+        </Fragment>
+      ) : (
+        <main className={`app ${darkmode ? "darkmode" : ""}`}>
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <Fragment>
+                  {" "}
+                  {!hide && (
+                    <Nav
+                      updateDarkMode={updateDarkMode}
+                      isLoggedIn={isLoggedIn}
+                    />
+                  )}{" "}
+                  <Home
+                    updateDarkMode={darkmode}
+                    toggleFav={toggleFav}
+                    isfav={Products.isfav}
+                    Products={Products}
+                    backendData={backendData}
+                    isLoggedIn={isLoggedIn}
+                  />
+                </Fragment>
+              }
+            />
+            <Route
+              path="/products"
+              element={
+                <Fragment>
+                  {" "}
+                  <ProductNavbar
+                    updateDarkMode={updateDarkMode}
+                    isLoggedIn={isLoggedIn}
+                  />
+                  <ProductsPage
+                    updateDarkMode={darkmode}
+                    toggleFav={toggleFav}
+                    isfav={Products.isfav}
+                    Products={Products}
+                    isLoggedIn={isLoggedIn}
+                  />
+                </Fragment>
+              }
+            />
+            <Route
+              path="/product/:id"
+              element={
+                <>
+                  <ProductNavbar
+                    updateDarkMode={updateDarkMode}
+                    isLoggedIn={isLoggedIn}
+                  />
 
-              <ProductsPage
-                updateDarkMode={darkmode}
-                toggleFav={toggleFav}
-                isfav={Products.isfav}
-                Products={Products}
-                isLoggedIn={isLoggedIn}
-              />
-            </>
-          }
-        />
-        <Route
-          path="/product/:id"
-          element={
-            <>
-              <ProductNavbar
-                updateDarkMode={updateDarkMode}
-                isLoggedIn={isLoggedIn}
-              />
+                  <Product
+                    updateDarkMode={darkmode}
+                    Products={Products}
+                    isLoggedIn={isLoggedIn}
+                  />
+                </>
+              }
+            />
+            <Route
+              path="/signup"
+              element={
+                <>
+                  <ProductNavbar
+                    updateDarkMode={updateDarkMode}
+                    isLoggedIn={isLoggedIn}
+                  />
+                  <Signup
+                    updateDarkMode={darkmode}
+                    toggleFav={toggleFav}
+                    isfav={Products.isfav}
+                    Products={Products}
+                    isLoggedIn={isLoggedIn}
+                  />
+                </>
+              }
+            />
+            <Route
+              path="/users/:id/verify/:token"
+              element={
+                <>
+                  <ProductNavbar
+                    updateDarkMode={updateDarkMode}
+                    isLoggedIn={isLoggedIn}
+                  />
 
-              <Product
-                updateDarkMode={darkmode}
-                Products={Products}
-                isLoggedIn={isLoggedIn}
-              />
-            </>
-          }
-        />
-        <Route
-          path="/signup"
-          element={
-            <>
-              <ProductNavbar
-                updateDarkMode={updateDarkMode}
-                isLoggedIn={isLoggedIn}
-              />
-              <Signup
-                updateDarkMode={darkmode}
-                toggleFav={toggleFav}
-                isfav={Products.isfav}
-                Products={Products}
-                isLoggedIn={isLoggedIn}
-              />
-            </>
-          }
-        />
-        <Route
-          path="/users/:id/verify/:token"
-          element={
-            <>
-              <ProductNavbar
-                updateDarkMode={updateDarkMode}
-                isLoggedIn={isLoggedIn}
-              />
+                  <EmailVerify
+                    updateDarkMode={darkmode}
+                    isLoggedIn={isLoggedIn}
+                  />
+                </>
+              }
+            />
+            <Route
+              path="/about-us"
+              element={
+                <>
+                  <ProductNavbar
+                    updateDarkMode={updateDarkMode}
+                    isLoggedIn={isLoggedIn}
+                  />
 
-              <EmailVerify updateDarkMode={darkmode} isLoggedIn={isLoggedIn} />
-            </>
-          }
-        />
-        <Route
-          path="/about-us"
-          element={
-            <>
-              <ProductNavbar
-                updateDarkMode={updateDarkMode}
-                isLoggedIn={isLoggedIn}
-              />
-
-              <About updateDarkMode={darkmode} isLoggedIn={isLoggedIn} />
-            </>
-          }
-        />
-        <Route
-          path="/login"
-          element={
-            <>
-              <ProductNavbar
-                updateDarkMode={updateDarkMode}
-                isLoggedIn={isLoggedIn}
-              />
-              <Login
-                updateDarkMode={darkmode}
-                toggleFav={toggleFav}
-                isfav={Products.isfav}
-                Products={Products}
-                isLoggedIn={isLoggedIn}
-              />
-            </>
-          }
-        />
-        <Route
-          path="/account"
-          element={
-            <>
-              <ProductNavbar
-                updateDarkMode={updateDarkMode}
-                isLoggedIn={isLoggedIn}
-              />
-              <Account
-                updateDarkMode={darkmode}
-                toggleFav={toggleFav}
-                isfav={Products.isfav}
-                Products={Products}
-                isLoggedIn={isLoggedIn}
-              />
-            </>
-          }
-        />
-        <Route
-          path="/upload"
-          element={
-            <>
-              <ProductNavbar
-                updateDarkMode={updateDarkMode}
-                isLoggedIn={isLoggedIn}
-              />
-              <Upload updateDarkMode={darkmode} isLoggedIn={isLoggedIn} />
-            </>
-          }
-        />
-        <Route
-          path="/favorites"
-          element={
-            <>
-              <ProductNavbar
-                updateDarkMode={updateDarkMode}
-                isLoggedIn={isLoggedIn}
-              />
-              <Favorite updateDarkMode={darkmode} isLoggedIn={isLoggedIn} />
-            </>
-          }
-        />
-        <Route path="/about" element={<About />} />
-      </Routes>
-    </main>
+                  <About updateDarkMode={darkmode} isLoggedIn={isLoggedIn} />
+                </>
+              }
+            />
+            <Route
+              path="/login"
+              element={
+                <>
+                  <ProductNavbar
+                    updateDarkMode={updateDarkMode}
+                    isLoggedIn={isLoggedIn}
+                  />
+                  <Login
+                    updateDarkMode={darkmode}
+                    toggleFav={toggleFav}
+                    isfav={Products.isfav}
+                    Products={Products}
+                    isLoggedIn={isLoggedIn}
+                  />
+                </>
+              }
+            />
+            <Route
+              path="/account"
+              element={
+                <>
+                  <ProductNavbar
+                    updateDarkMode={updateDarkMode}
+                    isLoggedIn={isLoggedIn}
+                  />
+                  <Account
+                    updateDarkMode={darkmode}
+                    toggleFav={toggleFav}
+                    isfav={Products.isfav}
+                    Products={Products}
+                    isLoggedIn={isLoggedIn}
+                  />
+                </>
+              }
+            />
+            <Route
+              path="/upload"
+              element={
+                <>
+                  <ProductNavbar
+                    updateDarkMode={updateDarkMode}
+                    isLoggedIn={isLoggedIn}
+                  />
+                  <Upload updateDarkMode={darkmode} isLoggedIn={isLoggedIn} />
+                </>
+              }
+            />
+            <Route
+              path="/favorites"
+              element={
+                <>
+                  <ProductNavbar
+                    updateDarkMode={updateDarkMode}
+                    isLoggedIn={isLoggedIn}
+                  />
+                  <Favorite updateDarkMode={darkmode} isLoggedIn={isLoggedIn} />
+                </>
+              }
+            />
+            <Route path="/about" element={<About />} />
+          </Routes>
+        </main>
+      )}{" "}
+    </Fragment>
   );
 }

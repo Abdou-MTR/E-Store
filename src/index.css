@@ -327,6 +327,8 @@ img.toggleButton {
   }
   .Market-Image {
     order: 2;
+    display: flex;
+    justify-content: center;
   }
   .Landing-description {
     order: 3;
