@@ -61,7 +61,10 @@ export default function CardProduct(props) {
           <h5 className="card-title">{props.title}</h5>
           <h5 className="card-price">{props.price}</h5>
         </div>
-        <div className=" gatag d-flex ">
+        <div className=" gatag d-flex flex-column ">
+          <h6 className="card-text  text-decoration-none" href="#">
+            {props.gatag}
+          </h6>
           <h6 className="card-text  text-decoration-none" href="#">
             {props.gatag}
           </h6>
