@@ -213,24 +213,24 @@ export default function App() {
             <Route
               path="/product/:id"
               element={
-                <>
+                <Fragment>
+                  {" "}
                   <ProductNavbar
                     updateDarkMode={updateDarkMode}
                     isLoggedIn={isLoggedIn}
                   />
-
                   <Product
                     updateDarkMode={darkmode}
                     Products={Products}
                     isLoggedIn={isLoggedIn}
                   />
-                </>
+                </Fragment>
               }
             />
             <Route
               path="/signup"
               element={
-                <>
+                <Fragment>
                   <ProductNavbar
                     updateDarkMode={updateDarkMode}
                     isLoggedIn={isLoggedIn}
@@ -242,42 +242,43 @@ export default function App() {
                     Products={Products}
                     isLoggedIn={isLoggedIn}
                   />
-                </>
+                </Fragment>
               }
             />
             <Route
               path="/users/:id/verify/:token"
               element={
-                <>
+                <Fragment>
+                  {" "}
                   <ProductNavbar
                     updateDarkMode={updateDarkMode}
                     isLoggedIn={isLoggedIn}
                   />
-
                   <EmailVerify
                     updateDarkMode={darkmode}
                     isLoggedIn={isLoggedIn}
                   />
-                </>
+                </Fragment>
               }
             />
             <Route
               path="/about-us"
               element={
-                <>
+                <Fragment>
+                  {" "}
                   <ProductNavbar
                     updateDarkMode={updateDarkMode}
                     isLoggedIn={isLoggedIn}
                   />
-
                   <About updateDarkMode={darkmode} isLoggedIn={isLoggedIn} />
-                </>
+                </Fragment>
               }
             />
             <Route
               path="/login"
               element={
-                <>
+                <Fragment>
+                  {" "}
                   <ProductNavbar
                     updateDarkMode={updateDarkMode}
                     isLoggedIn={isLoggedIn}
@@ -289,13 +290,14 @@ export default function App() {
                     Products={Products}
                     isLoggedIn={isLoggedIn}
                   />
-                </>
+                </Fragment>
               }
             />
             <Route
               path="/account"
               element={
-                <>
+                <Fragment>
+                  {" "}
                   <ProductNavbar
                     updateDarkMode={updateDarkMode}
                     isLoggedIn={isLoggedIn}
@@ -307,31 +309,32 @@ export default function App() {
                     Products={Products}
                     isLoggedIn={isLoggedIn}
                   />
-                </>
+                </Fragment>
               }
             />
             <Route
               path="/upload"
               element={
-                <>
+                <Fragment>
                   <ProductNavbar
                     updateDarkMode={updateDarkMode}
                     isLoggedIn={isLoggedIn}
                   />
                   <Upload updateDarkMode={darkmode} isLoggedIn={isLoggedIn} />
-                </>
+                </Fragment>
               }
             />
             <Route
               path="/favorites"
               element={
-                <>
+                <Fragment>
+                  {" "}
                   <ProductNavbar
                     updateDarkMode={updateDarkMode}
                     isLoggedIn={isLoggedIn}
                   />
                   <Favorite updateDarkMode={darkmode} isLoggedIn={isLoggedIn} />
-                </>
+                </Fragment>
               }
             />
             <Route path="/about" element={<About />} />
