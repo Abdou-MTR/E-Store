@@ -5,6 +5,7 @@
   src: url(./fonts/Fontspring-DEMO-halcyon-medium.otf);
 }
 :root {
+  --width-variable: 405px;
   --var-navColor: #ffffff;
   --var-navColor-Text: #000000;
   --var-color-60: #c5d6ea;
@@ -22,6 +23,7 @@
 }
 
 .darkmode {
+  --width-variable: 405px;
   --var-navColor: #0d0d0d;
   --var-navColor-Text: #ffffff;
   --var-color-60-dark: #c3c2ee;
@@ -71,7 +73,7 @@ body {
 }
 .FavCardImg {
   position: relative;
-  width: 405px;
+  width: var(--width-variable);
   height: 403px;
   padding: 50px;
   background-color: var(--var-Fav-Color);
@@ -92,7 +94,7 @@ body {
   background-color: var(--var-button-Backgroundcolor);
 }
 .FavTitle {
-  width: 100%;
+  width: var(--width-variable);
 }
 .FavIcon {
   display: flex;

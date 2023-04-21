@@ -252,7 +252,7 @@ export default function MainProducts(props) {
             <label htmlFor="description">Product Description</label>
           </div>
           <div className="form-group">
-            <label htmlFor="image">Image:</label>
+            <label htmlFor="image"></label>
             <input
               type="file"
               className="form-control-file"
