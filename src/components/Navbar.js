@@ -46,12 +46,16 @@ export default function Navbar(props) {
                 />
               </Link>
             )}
-
-            <img
-              src={darkmode ? icons.favoriteDarkmode : icons.favorite}
-              alt="favorite"
-            />
-            <img src={darkmode ? icons.bagDarkmode : icons.bag} alt="bag" />
+            <Link to="/favorites" className="acc-img">
+              {" "}
+              <img
+                src={darkmode ? icons.favoriteDarkmode : icons.favorite}
+                alt="favorite"
+              />
+            </Link>
+            <Link to="/bag" className="acc-img">
+              <img src={darkmode ? icons.bagDarkmode : icons.bag} alt="bag" />
+            </Link>
 
             <div className="Dark-mode ">
               <img
