@@ -31,7 +31,7 @@ export default function Navbar(props) {
           </div>{" "}
           <div className="main-icons  ms-sm-3 ms-lg-4   ">
             {isLoggedIn ? (
-              <Link to={`/account`} className="acc-img">
+              <Link to={`/account`} className="me-2">
                 {" "}
                 <img
                   src={darkmode ? icons.profileDarkmode : icons.profile}
@@ -39,21 +39,21 @@ export default function Navbar(props) {
                 />
               </Link>
             ) : (
-              <Link to={`/signup`} className="acc-img">
+              <Link to={`/signup`} className="me-2">
                 <img
                   src={darkmode ? icons.profileDarkmode : icons.profile}
                   alt="profile"
                 />
               </Link>
             )}
-            <Link to="/favorites" className="acc-img">
+            <Link to="/favorites" className="me-2">
               {" "}
               <img
                 src={darkmode ? icons.favoriteDarkmode : icons.favorite}
                 alt="favorite"
               />
             </Link>
-            <Link to="/bag" className="acc-img">
+            <Link to="/bag" className="me-2">
               <img src={darkmode ? icons.bagDarkmode : icons.bag} alt="bag" />
             </Link>
 
