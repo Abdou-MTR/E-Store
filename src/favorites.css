@@ -6,6 +6,7 @@
 }
 :root {
   --width-variable: 405px;
+  --var-WidthSmall: 338px;
   --var-navColor: #ffffff;
   --var-navColor-Text: #000000;
   --var-color-60: #c5d6ea;
@@ -39,6 +40,7 @@
   --var-color-60: #1c334d;
   --var-main-title: #d2d2d2;
   --var-Fav-Color: #1d1e22;
+  --var-WidthSmall: 338px;
 }
 .app {
   background-color: var(--var-background);
@@ -152,4 +154,95 @@ body {
   background-color: #a12600;
   border: none;
   color: var(--var-button-color);
+}
+@media screen and (max-width: 600px) {
+  .FavCardImg img {
+    width: 238px;
+    height: 241px;
+  }
+  .FavCard {
+    width: 299.5px;
+  }
+  .FavCardImg {
+    position: relative;
+    width: var(--var-WidthSmall);
+    height: 333px;
+
+    background-color: var(--var-Fav-Color);
+  }
+  .FavRemoveButt {
+    padding: 0px 8px;
+    color: var(--var-button-color);
+    border: none;
+    font-family: "Work Sans", sans-serif;
+    background-color: var(--var-button-Backgroundcolor);
+  }
+  .FavRemoveButt:hover {
+    background-color: #ef212a;
+  }
+
+  .FavDownButt {
+    width: 24px;
+    height: 24px;
+    color: var(--var-button-color);
+    border: none;
+    font-family: "Work Sans", sans-serif;
+    background-color: var(--var-button-Backgroundcolor);
+  }
+  .FavDownButt:hover {
+    color: var(--var-button-color);
+    background-color: #f15627;
+  }
+  .FavTitle {
+    width: var(--var-WidthSmall);
+  }
+  .FavIcon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 12px;
+    height: 12px;
+  }
+  .FavRemove {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+  }
+  .FavProduct-Title {
+    font-family: "Work Sans", sans-serif;
+    font-weight: 600;
+  }
+  .FavminDesc {
+    font-size: 14px;
+    font-family: "Work Sans", sans-serif;
+    font-weight: 500;
+  }
+  .FavButtons {
+    width: var(--var-WidthSmall);
+  }
+  .FavAdd {
+    background-color: var(--var-button-Backgroundcolor);
+    color: var(--var-button-color);
+    width: auto;
+    border: none;
+    padding: 10px 35px;
+  }
+  .FavAdd:hover {
+    background-color: var(--var-color-60);
+    color: var(--var-button-Backgroundcolor);
+  }
+
+  #FavMore {
+    background-color: var(--var-background);
+    color: var(--var-button-Backgroundcolor);
+    width: auto;
+    font-weight: 400;
+    border: 1px solid var(--var-button-Backgroundcolor);
+    padding: 11px 16px;
+  }
+  #FavMore:hover {
+    background-color: #a12600;
+    border: none;
+    color: var(--var-button-color);
+  }
 }

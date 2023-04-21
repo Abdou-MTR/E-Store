@@ -9,7 +9,7 @@ const FavoriteCard = () => {
   return (
     <div>
       <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 ">
-        <div className="col d-flex  flex-column mx-auto FavCard">
+        <div class="col d-flex ms-4 flex-column mx-auto FavCard">
           <div className="FavCardImg">
             {" "}
             <div className=" FavRemove">
