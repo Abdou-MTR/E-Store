@@ -85,6 +85,10 @@ body {
   font-family: "Work Sans", sans-serif;
   background-color: var(--var-button-Backgroundcolor);
 }
+.FavRemoveButt:hover {
+  background-color: #ef212a;
+}
+
 .FavDownButt {
   width: 24px;
   height: 24px;
@@ -92,6 +96,10 @@ body {
   border: none;
   font-family: "Work Sans", sans-serif;
   background-color: var(--var-button-Backgroundcolor);
+}
+.FavDownButt:hover {
+  color: var(--var-button-color);
+  background-color: #f15627;
 }
 .FavTitle {
   width: var(--width-variable);
@@ -111,4 +119,37 @@ body {
 .FavProduct-Title {
   font-family: "Work Sans", sans-serif;
   font-weight: 600;
+}
+.FavminDesc {
+  font-size: 14px;
+  font-family: "Work Sans", sans-serif;
+  font-weight: 500;
+}
+.FavButtons {
+  width: var(--width-variable);
+}
+.FavAdd {
+  background-color: var(--var-button-Backgroundcolor);
+  color: var(--var-button-color);
+  width: auto;
+  border: none;
+  padding: 10px 55px;
+}
+.FavAdd:hover {
+  background-color: var(--var-color-60);
+  color: var(--var-button-Backgroundcolor);
+}
+
+#FavMore {
+  background-color: var(--var-background);
+  color: var(--var-button-Backgroundcolor);
+  width: auto;
+  font-weight: 400;
+  border: 1px solid var(--var-button-Backgroundcolor);
+  padding: 10px 35px;
+}
+#FavMore:hover {
+  background-color: #a12600;
+  border: none;
+  color: var(--var-button-color);
 }
