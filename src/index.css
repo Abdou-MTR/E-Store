@@ -611,23 +611,30 @@ img.toggleButton {
   justify-content: space-between;
 }
 .info p {
-  font-size: 10px;
+  font-size: 12px;
+  font-family: "Work Sans", sans-serif;
   margin-top: 5px;
+  font-weight: 600;
 }
+
 .info h6 {
   font-size: 16px;
   margin-top: 5px;
 }
-.Details-Span {
-  height: 15px;
-
-  height: 20px;
+.details-container {
+  height: 0;
   overflow: hidden;
-  transition-duration: 1s;
+  transition: height 0.3s ease-out;
 }
-.Details-Span:hover:focus {
+
+.details-container.show {
   height: auto;
 }
+
+.details-container.hide {
+  height: 0;
+}
+
 #add-to-Bag {
   font-size: 13px;
   font-weight: 500;

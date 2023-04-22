@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import image1 from "../images/image 1.png";
 import image2 from "../images/image 2.png";
 import image3 from "../images/image 3.png";
@@ -16,16 +16,6 @@ export default function Product(props) {
   if (!product) {
     return <div>Product not found</div>;
   }
-  console.log(product.price);
-  console.log(product.brand);
-  console.log(product.title);
-  console.log(product.gatag);
-  console.log(product.shipping);
-  console.log(product.size);
-  console.log(product.dimensions);
-  console.log(product.weight);
-  console.log(product.color);
-  console.log(product.image);
 
   const ReadMore = ({ children }) => {
     const text = children;
@@ -42,6 +32,12 @@ export default function Product(props) {
         </span>
       </p>
     );
+  };
+
+  const [showDetails, setShowDetails] = useState(false);
+
+  const handleDetailsClick = () => {
+    setShowDetails(!showDetails);
   };
 
   let nbrstars = product.stars;
@@ -100,29 +96,31 @@ export default function Product(props) {
             </button>
           </div>
           <div className="Details-Span mt-2">
-            <a className=" Details" href="">
+            <a className=" Details" href="#" onClick={handleDetailsClick}>
               See more details
             </a>
-            <div className="row mt-2 ">
-              <div className=" mt-1">
-                <div className="d-flex flex-row info">
-                  <h6 className="card-info">Brand: </h6> <p>{product.brand}</p>
-                </div>
-                <div className="d-flex flex-row info">
-                  <h6 className="card-info">Model:</h6>
-                  <p>{product.title}</p>
-                </div>
-                <div className="d-flex flex-row info">
-                  <h6 className="card-info">Color: </h6>
-                  <p> {product.color}</p>
-                </div>
-
-                <div className="d-flex flex-row info">
-                  <h6 className="card-info">Weight: </h6>
-                  <p>{product.weight}</p>
+            {showDetails && (
+              <div className="row mt-2">
+                <div className=" mt-1">
+                  <div className="d-flex flex-row info">
+                    <h6 className="card-info">Brand: </h6>
+                    <p>{product.brand}</p>
+                  </div>
+                  <div className="d-flex flex-row info">
+                    <h6 className="card-info">Model:</h6>
+                    <p>{product.title}</p>
+                  </div>
+                  <div className="d-flex flex-row info">
+                    <h6 className="card-info">Color: </h6>
+                    <p>{product.color}</p>
+                  </div>
+                  <div className="d-flex flex-row info">
+                    <h6 className="card-info">Weight: </h6>
+                    <p>{product.weight}</p>
+                  </div>
                 </div>
               </div>
-            </div>
+            )}
           </div>
           <div className="d-flex flex-column mt-4">
             <button id="add-to-Bag">Add to Bag</button>
