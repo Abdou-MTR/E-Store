@@ -59,3 +59,23 @@ body {
   width: 191px;
   height: 193px;
 }
+.Bag-Title {
+  font-family: "Work Sans";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 16px;
+  color: var(--var-button-Backgroundcolor);
+  letter-spacing: -0.02em;
+}
+.Bag-Dis {
+  height: 12px;
+
+  font-family: "Work Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 12px;
+  color: var(--var-button-Backgroundcolor);
+  letter-spacing: -0.02em;
+}
