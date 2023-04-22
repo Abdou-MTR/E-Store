@@ -36,6 +36,22 @@ const FavoriteCard = () => {
               </button>
             </div>
           </div>
+          <div className="d-flex flex-row info">
+            <h6 className="card-info">Brand: </h6>
+            <p>Samsang</p>
+          </div>
+          <div className="d-flex flex-row info">
+            <h6 className="card-info">Model:</h6>
+            <p>Samsung A53</p>
+          </div>
+          <div className="d-flex flex-row info">
+            <h6 className="card-info">Color: </h6>
+            <p>Blue</p>
+          </div>
+          <div className="d-flex flex-row info">
+            <h6 className="card-info">Weight: </h6>
+            <p>50g</p>
+          </div>
           <div>
             <p className="FavminDesc mt-2">5G 8GB/256GB 46MP</p>
             <p className="FavminDesc mt-2">Medium</p>
