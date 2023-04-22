@@ -19,6 +19,7 @@ import Upload from "./other/upload";
 import Signup from "./other/singup/signup";
 import Login from "./other/singup/login";
 import Account from "./other/account";
+import Bag from "./Bag/Bag";
 
 export default function App() {
   const [backendData, setBackendData] = useState([{}]);
@@ -258,6 +259,19 @@ export default function App() {
                     updateDarkMode={darkmode}
                     isLoggedIn={isLoggedIn}
                   />
+                </Fragment>
+              }
+            />
+            <Route
+              path="/Bag"
+              element={
+                <Fragment>
+                  {" "}
+                  <ProductNavbar
+                    updateDarkMode={updateDarkMode}
+                    isLoggedIn={isLoggedIn}
+                  />
+                  <Bag updateDarkMode={darkmode} isLoggedIn={isLoggedIn} />
                 </Fragment>
               }
             />
