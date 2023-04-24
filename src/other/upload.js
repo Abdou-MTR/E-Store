@@ -106,7 +106,6 @@ export default function MainProducts(props) {
           <h6 className="mb-5 up-ad">Hey there, welcome back Admin</h6>
         </div>
       </div>
-      <div></div>
       <div className="Product-upload">
         <form
           method="POST"
