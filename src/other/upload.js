@@ -16,6 +16,7 @@ export default function MainProducts(props) {
     brand: "",
     weight: "",
     size: "",
+    color: "",
     dimensions: "",
     shippingFees: "",
     description: "",
@@ -47,6 +48,7 @@ export default function MainProducts(props) {
     formData.append("brand", productData.brand);
     formData.append("weight", productData.weight);
     formData.append("size", productData.size);
+    formData.append("color", productData.color);
     formData.append("dimensions", productData.dimensions);
     formData.append("shippingFees", productData.shippingFees);
     formData.append("description", productData.description);
@@ -74,6 +76,7 @@ export default function MainProducts(props) {
         brand: "",
         weight: "",
         size: "",
+        color: "",
         dimensions: "",
         shippingFees: "",
         description: "",
@@ -144,7 +147,7 @@ export default function MainProducts(props) {
             >
               <option value="">--Select Categorie--</option>
               <option value="Keyboards">Keyboards</option>
-              <option value="blue">Smartphones</option>
+              <option value="Smartphones">Smartphones</option>
               <option value="Graphic cards">Graphic cards</option>
               <option value="Monitors">Monitors</option>
             </select>
@@ -200,6 +203,18 @@ export default function MainProducts(props) {
             <span class="highlight"></span>
             <span class="bar"></span>
             <label htmlFor="weight">Product Weight</label>
+          </div>
+          <div class="group">
+            <input
+              type="text"
+              required="required"
+              name="color"
+              value={productData.color}
+              onChange={handleInputChange}
+            />
+            <span class="highlight"></span>
+            <span class="bar"></span>
+            <label htmlFor="color">Product color</label>
           </div>
           <div class="group">
             <input

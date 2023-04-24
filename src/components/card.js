@@ -1,8 +1,4 @@
 import React from "react";
-import image1 from "../images/image 1.png";
-import image2 from "../images/image 2.png";
-import image3 from "../images/image 3.png";
-import image4 from "../images/image 4.png";
 
 import "../App.css";
 import { Link } from "react-router-dom";
@@ -14,7 +10,7 @@ export default function CardProduct(props) {
     props.toggleFav(props.id, liked);
   };
 
-  let nbrstars = props.stars;
+  let nbrstars = props.rating;
   let stars = [];
   let Empty = 5 - nbrstars;
 
@@ -26,27 +22,17 @@ export default function CardProduct(props) {
       <i class="fa-regular fa-star-half-stroke star-icon " key={i}></i>
     );
   }
-
+  console.log(props.image);
   return (
     <>
       <div className=" product-cart-mini me-lg-3 ">
         <div className="cardi ">
           <Link to={`/product/${props.id}  `}>
             <img
-              src={
-                props.image === 1
-                  ? image1
-                  : props.image === 2
-                  ? image2
-                  : props.image === 3
-                  ? image3
-                  : props.image === 4
-                  ? image4
-                  : null
-              }
+              src={`.${props.image}`}
               className="card-img img-fluid"
-              alt={props.title}
-              title={props.title}
+              alt={props.name}
+              title={props.name}
             />
           </Link>
           <button className="heart-ico" onClick={likedHandler}>
@@ -59,14 +45,15 @@ export default function CardProduct(props) {
         </div>
         <div className=" d-flex justify-content-between cord mt-3">
           <h5 className="card-title">{props.title}</h5>
-          <h5 className="card-price">{props.price}</h5>
+          <h5 className="card-price">${props.price}</h5>
         </div>
         <div className=" gatag d-flex flex-column ">
           <h6 className="card-text  text-decoration-none" href="#">
-            {props.gatag}
+            {props.miniDescription}
           </h6>
-          <h6 className="card-text  text-decoration-none" href="#">
-            {props.gatag}
+
+          <h6 className="card-text fw-bold " href="#">
+            {props.category}
           </h6>
         </div>{" "}
         <div className=" d-flex mt-2  mt-lg-3 ">{stars}</div>

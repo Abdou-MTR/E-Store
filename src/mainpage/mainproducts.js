@@ -1,8 +1,14 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import CardProduct from "../components/card";
 
 export default function MainProducts(props) {
-  const products = props.Products;
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:5000/products")
+      .then((res) => res.json())
+      .then((data) => setProducts(data));
+  }, []);
 
   return (
     <div className="container ">
@@ -11,11 +17,12 @@ export default function MainProducts(props) {
           <div key={product.id} className="col-md-6 col-sm-6 col-lg-3 mt-5">
             <CardProduct
               id={product.id}
-              title={product.title}
+              title={product.name}
               price={product.price}
-              gatag={product.gatag}
+              miniDescription={product.miniDescription}
+              category={product.category}
               image={product.image}
-              stars={product.stars}
+              rating={product.rating}
               shipping={product.shipping}
               isfav={product.isfav}
               brand={product.brand}
