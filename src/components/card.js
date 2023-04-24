@@ -3,7 +3,7 @@ import React from "react";
 import "../App.css";
 import { Link } from "react-router-dom";
 export default function CardProduct(props) {
-  let [liked, setLiked] = React.useState(props.isfa
+  let [liked, setLiked] = React.useState(props.isfav);
 
   let likedHandler = () => {
     setLiked(!liked);
