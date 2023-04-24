@@ -103,7 +103,7 @@ export default function MainProducts(props) {
             />
           </Link>
           <h2>Upload Product</h2>
-          <h6 className="mb-5 up-ad">Hey there, welcome back Admin
+          <h6 className="mb-5 up-ad">Hey there, welcome back Admin</h6>
         </div>
       </div>
       <div className="Product-upload">
