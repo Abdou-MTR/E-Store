@@ -20,7 +20,10 @@ const BagCard = () => {
 
   const price = 560 * number;
   return (
-    <div className="d-flex flex-row justify-content-between mt-5 container">
+    <div
+      className="d-flex flex-row justify-content-between mt-5 container col-8"
+      style={{ height: "100%" }}
+    >
       <div className="part-1 d-flex flex-row">
         <div></div>
         <img src={image} alt="img" className="BagImg" />

@@ -59,7 +59,6 @@ export default function MainProducts(props) {
           "Content-Type": "multipart/form-data",
         },
       });
-      console.log(formData);
 
       Swal.fire({
         icon: "success",
@@ -83,13 +82,10 @@ export default function MainProducts(props) {
         image: "",
       });
     } catch (error) {
-      console.log(formData);
-
-      console.log(error);
+      
       alert("Failed to upload product");
     }
   };
-  console.log(productData);
 
   return (
     <main>

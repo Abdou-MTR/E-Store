@@ -9,7 +9,6 @@ export default function Navbar(props) {
   );
 
   let isLoggedIn = localStorage.getItem("token");
-  console.log(isLoggedIn);
 
   function darkmodeChanger() {
     const newDarkmode = !darkmode;

@@ -140,7 +140,6 @@ export default function App() {
       return item;
     });
     setProducts(newProducts);
-    console.log(Products);
   };
 
   //for hide element for specific route

@@ -9,19 +9,16 @@ const EmailVerify = () => {
 
   const [validUrl, setValidUrl] = useState(false);
   const params = useParams();
-  console.log(params);
 
   useEffect(() => {
     const verifyEmailUrl = async () => {
       try {
         const url = `http://localhost:5000/api/users/${params.id}/verify/${params.token}`;
         const { data } = await axios.get(url);
-        console.log(data);
-        console.log(url);
+
 
         setValidUrl(true);
       } catch (error) {
-        console.log(error);
         setValidUrl(false);
       }
     };

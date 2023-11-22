@@ -1,15 +1,23 @@
-import React, { useState } from "react";
-import image1 from "../images/image 1.png";
-import image2 from "../images/image 2.png";
-import image3 from "../images/image 3.png";
-import image4 from "../images/image 4.png";
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+
 import "../App.css";
 
-import { useParams } from "react-router-dom";
 export default function Product(props) {
+  const [products, setProducts] = useState([]);
+  const [showDetails, setShowDetails] = useState(false);
+
   const { id } = useParams();
-  const product = props.Products.find((item) => {
-    console.log(item.id, id);
+  console.log("id is", id);
+  useEffect(() => {
+    fetch("http://localhost:5000/products")
+      .then((res) => res.json())
+      .then((data) => setProducts(data));
+  }, []);
+
+  const product = products.find((item) => {
+    console.log("item id is", item.id);
+
     return item.id == id;
   });
 
@@ -34,18 +42,22 @@ export default function Product(props) {
     );
   };
 
-  const [showDetails, setShowDetails] = useState(false);
-
   const handleDetailsClick = () => {
     setShowDetails(!showDetails);
   };
 
-  let nbrstars = product.stars;
+  let nbrstars = product.rating;
   let stars = [];
+  let Empty = 5 - nbrstars;
+
   for (let i = 0; i < nbrstars; i++) {
     stars.push(<i className="fa-solid fa-star star-icon " key={i}></i>);
   }
-  /*let image = `..${product.image}`;*/
+  for (let i = 0; i < Empty; i++) {
+    stars.push(
+      <i class="fa-regular fa-star-half-stroke star-icon " key={i}></i>
+    );
+  }
 
   return (
     <div className="container">
@@ -53,17 +65,7 @@ export default function Product(props) {
         <div className="col">
           <div className=" mb-4 cardono ">
             <img
-              src={
-                product.id == 1
-                  ? image1
-                  : product.id == 2
-                  ? image2
-                  : product.id == 3
-                  ? image3
-                  : product.id == 4
-                  ? image4
-                  : null
-              }
+              src={product.image}
               className="card-img img-fluid"
               alt={props.title}
               title={props.title}
@@ -72,12 +74,9 @@ export default function Product(props) {
         </div>
 
         <div className="col mb-4 pe-md-5 ps-md-5 ">
-          <h4 className="card-title mb-2 ">{product.title}</h4>
-          <h5 className="card-price">{product.price}</h5>
-          <h6 classname="shipping">
-            {`${product.shipping} Import Fees Deposit to Algeria`}{" "}
-          </h6>
-          <div className=" d-flex mt-1 mb-2 ">
+          <h4 className="card-title mb-2 ">{product.name}</h4>
+          <h5 className="card-price">{product.price}$</h5>
+          <div className=" d-flex  ">
             {" "}
             <div className="me-2">
               <p>5/5</p>
@@ -85,10 +84,14 @@ export default function Product(props) {
             <div>{stars}</div>
           </div>
 
-          <div class="  d-flex flex-row ">
+          <h6 classname="shipping">
+            {`${product.shippingFees}$ Import Fees Deposit to Algeria`}{" "}
+          </h6>
+
+          <div class="  d-flex flex-row mt-4">
             <button className="size me-2" href="#">
-              <h3>Medium</h3>
-              <p>120 by 18inches</p>
+              <h3>{product.size}</h3>
+              <p>{product.dimensions}</p>
             </button>
             <button className="size" href="#">
               <h3>Small</h3>
@@ -117,6 +120,10 @@ export default function Product(props) {
                   <div className="d-flex flex-row info">
                     <h6 className="card-info">Weight: </h6>
                     <p>{product.weight}</p>
+                  </div>
+                  <div className="flex flex-col ">
+                    <h6 className="card-info">Description: </h6>
+                    <p className="Card-dis">{product.description}</p>
                   </div>
                 </div>
               </div>

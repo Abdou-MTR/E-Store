@@ -1,13 +1,27 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import icons from "../components/Icon";
 import Product from "../components/Product";
 export default function Meme(props) {
+  const [products, setProducts] = useState([]);
+
   const { id } = useParams();
-  const product = props.Products.find((item) => {
-    console.log(item.id, id);
+  console.log("id is", id);
+  useEffect(() => {
+    fetch("http://localhost:5000/products")
+      .then((res) => res.json())
+      .then((data) => setProducts(data));
+  }, []);
+
+  const product = products.find((item) => {
+    console.log("item id is", item.id);
+
     return item.id == id;
   });
+
+  if (!product) {
+    return <div>Product not found</div>;
+  }
   return (
     //create a input field
     <main class="d-flex flex-column ms-3">
@@ -102,7 +116,6 @@ export default function Meme(props) {
             />
           </>
         </div>
-
       </div>
     </main>
   );

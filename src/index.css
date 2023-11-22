@@ -668,9 +668,9 @@ img.toggleButton {
   font-size: 14px;
 }
 .shipping {
-  opacity: 60%;
-  font-weight: 400;
-  font-size: 12px;
+  opacity: 40%;
+  font-weight: 600;
+  font-size: 8px;
 }
 .cart-btn:hover {
   font-weight: 400;
@@ -1113,4 +1113,9 @@ button.err {
   background: var(--var-color-60);
   cursor: pointer;
   border: solid 1px var(--var-color-30-2);
+}
+.Card-dis {
+  font-size: 11px;
+  color: var(--var-color-30-2);
+  font-weight: 600;
 }

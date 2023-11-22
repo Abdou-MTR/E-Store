@@ -46,8 +46,7 @@ export default function Signup(props) {
       });
       navigate("/");
 
-      console.log(res.message);
-      console.log(msg);
+
     } catch (error) {
       if (
         error.response &&

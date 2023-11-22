@@ -25,7 +25,6 @@ export default function Signin(props) {
       const { data: res } = await axios.post(url, data);
       localStorage.setItem("token", res.data);
       window.location = "/";
-      console.log(res.message);
     } catch (error) {
       if (
         error.response &&
@@ -41,7 +40,6 @@ export default function Signin(props) {
     <div className="d-flex flex-row row-cols-md-2 login signop row-cols-1 m-0  ">
       <div className=" col firstpart d-sm-none d-lg-flex   ">
         <img src={login} alt="login" className="img-fluid" />
-        <button>Name</button>
       </div>{" "}
       <div className=" col secondpart mt-4 ">
         <div className="container text-center">

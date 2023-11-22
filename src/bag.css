@@ -128,6 +128,35 @@ body {
   font-weight: 600;
   font-size: 18px;
 }
+.first {
+  width: 100%;
+}
+.checkout {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 32px;
+  font-family: "Work Sans";
+  width: 400px;
+  height: 750px;
+
+  background: #f9fafb;
+  border-radius: 0px;
+}
+.pricing {
+  width: 200px;
+  font-weight: 400;
+
+  font-size: 13px;
+}
+.Total {
+  width: 300px;
+}
+.totalPrice {
+  font-weight: 600;
+}
+/*************************Small Screens********************************/
 @media screen and (max-width: 600px) {
   .BagImg {
     width: 117px;
@@ -197,3 +226,4 @@ body {
     font-size: 14px;
   }
 }
+/*****------------------end Small Screens------------------------------*/
