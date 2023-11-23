@@ -669,7 +669,7 @@ img.toggleButton {
 }
 .shipping {
   opacity: 40%;
-  
+  font-weight: 600;
   font-size: 8px;
 }
 .cart-btn:hover {
