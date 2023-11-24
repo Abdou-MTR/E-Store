@@ -44,19 +44,15 @@ export default function CardProduct(props) {
           </button>
         </div>
         <div className=" d-flex justify-content-between cord mt-3">
-          <h5 className="card-title">{props.title}</h5>
-          <h5 className="card-price">${props.price}</h5>
+          <h5 className="card-title-front">{props.title}</h5>
+          <h5 className="card-text ">${props.price}</h5>
         </div>
         <div className=" gatag d-flex flex-column ">
           <h6 className="card-text  text-decoration-none" href="#">
             {props.miniDescription}
           </h6>
-
-          <h6 className="card-text fw-bold " href="#">
-            {props.category}
-          </h6>
         </div>{" "}
-        <div className=" d-flex mt-2  mt-lg-3 ">{stars}</div>
+        <div className=" d-flex mt-2  mt-lg-2 ">{stars}</div>
         <button className=" cart-btn mt-3 mt-lg-3">Add to cart</button>
       </div>
     </>
