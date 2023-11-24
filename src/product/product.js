@@ -30,7 +30,7 @@ export default function Meme(props) {
         <div class="d-flex mb-3 path P-word fw-light">
           <div>
             {" "}
-            Product /<a>{product.gatag} </a> / <a>{product.brand} </a> /
+            Product /<a> {product.category}</a>/ <a>{product.brand} </a> /
             <span
               className={!props.updateDarkMode ? "text-black" : "text-white"}
             >

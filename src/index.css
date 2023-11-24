@@ -466,15 +466,6 @@ img.toggleButton {
   margin-bottom: 10px;
 }
 
-@media (max-width: 600px) {
-  #description {
-    font-size: 12px;
-    width: 90%;
-  }
-  #Title {
-    font-size: 60px;
-  }
-}
 .Discover-Products {
   font-size: 18px;
   font-family: "Work Sans", sans-serif;
@@ -515,7 +506,7 @@ img.toggleButton {
 /*------------------        CARDS SECTION  ----------------------------*/
 
 .cardono {
-  padding: 75px 125px !important;
+  padding: 55px 85px !important;
   font-family: "Work Sans", sans-serif;
   box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
     rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
@@ -594,15 +585,20 @@ img.toggleButton {
 }
 .card-title {
   font-family: "Work Sans", sans-serif;
-
-  font-weight: 500;
-  font-size: 20px;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 22px;
 }
 .card-price {
   font-family: "Work Sans", sans-serif;
-  color: var(--var-color-30-2);
+  color: #4b5563;
   font-weight: 500;
   font-size: 16px;
+}
+.rating {
+  color: #4b5563;
+  font-weight: 400;
+  font-family: "Work Sans", sans-serif;
 }
 .card-text {
   font-weight: 300;
@@ -669,7 +665,7 @@ img.toggleButton {
 }
 .shipping {
   opacity: 40%;
-  
+
   font-size: 8px;
 }
 .cart-btn:hover {
@@ -714,6 +710,17 @@ img.toggleButton {
 }
 
 @media (max-width: 600px) {
+  #description {
+    font-size: 12px;
+    width: 90%;
+  }
+  #Title {
+    font-size: 60px;
+  }
+  .cardono {
+    padding: 0px !important;
+    box-shadow: none;
+  }
   #More {
     font-size: 13px;
     font-family: "Work Sans", sans-serif;
