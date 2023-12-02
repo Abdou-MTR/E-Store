@@ -1,13 +1,12 @@
-import { useState, useEffect } from "react";
-import { Fragment } from "react";
+import React, { useState, useEffect } from "react";
+import { useHistory, useParams } from "react-router-dom";
+import toast, { Toaster } from "react-hot-toast";
 import axios from "axios";
 
-import { Link, useParams } from "react-router-dom";
-
 const EmailVerify = () => {
-  //const navigate = useNavigate();
-
+  const history = useHistory();
   const [validUrl, setValidUrl] = useState(false);
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
   const params = useParams();
 
   useEffect(() => {
@@ -15,39 +14,36 @@ const EmailVerify = () => {
       try {
         const url = `http://localhost:5000/api/users/${params.id}/verify/${params.token}`;
         const { data } = await axios.get(url);
-
-
         setValidUrl(true);
+        setShowSuccessMessage(true);
+
+        // Redirect to the login page after a delay (e.g., 3 seconds)
+        setTimeout(() => {
+          history.push("/login");
+        }, 3000);
       } catch (error) {
         setValidUrl(false);
       }
     };
     verifyEmailUrl();
-  }, [params]);
+  }, [params, history]);
+
   return (
-    <Fragment>
-      {validUrl ? (
-        <div className="container">
-          <div className="row">
-            <div className="col-md-6">
-              <h1>Email Verified</h1>
-              <Link to="/login">
-                {" "}
-                <button class="add-btn-logout"> Login</button>
-              </Link>
+    <div
+      className={`container ${showSuccessMessage ? "blurred-background" : ""}`}
+    >
+      <div className="row">
+        <div className="col-md-6">
+          <Toaster />
+          {showSuccessMessage && (
+            <div className="success-message">
+              <h1>Email Verified!</h1>
+              <p>Redirecting to login...</p>
             </div>
-          </div>
+          )}
         </div>
-      ) : (
-        <div className="container">
-          <div className="row">
-            <div className="col-md-6">
-              <h1>Invalid Url</h1>
-            </div>
-          </div>
-        </div>
-      )}
-    </Fragment>
+      </div>
+    </div>
   );
 };
 
