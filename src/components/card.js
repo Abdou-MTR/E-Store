@@ -1,13 +1,22 @@
-import React from "react";
-
 import "../App.css";
 import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import axios from "axios";
 export default function CardProduct(props) {
-  let [liked, setLiked] = React.useState(props.isfav);
+  const [liked, setLiked] = useState(false);
 
-  let likedHandler = () => {
-    setLiked(!liked);
-    props.toggleFav(props.id, liked);
+  const likedHandler = async () => {
+    try {
+      // Make a request to your backend to add/remove the product from favorites
+      await axios.post("http://localhost:5000/api/favorites", {
+        productId: props.id,
+      });
+
+      // Toggle the liked state locally
+      setLiked(!liked);
+    } catch (error) {
+      console.error("Error adding product to favorites:", error);
+    }
   };
 
   let nbrstars = props.rating;

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import icons from "../components/Icon";
 import Product from "../components/Product";
-export default function Meme(props) {
+export default function OneProduct(props) {
   const [products, setProducts] = useState([]);
 
   const { id } = useParams();

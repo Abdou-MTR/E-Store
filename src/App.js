@@ -43,104 +43,9 @@ export default function App() {
   }, [darkmode]);
 
   // prettier-ignore
-  let [Products, setProducts] = React.useState([
-    {
-      title: "Samsung galaxy A53 5G",
-      price: "$79.99",
-      gatag: "5G 6GB/128GB 16Mp",
-      image: 1,
-      id: "1",
-      stars: 5,
-      shipping: "Free",
-      isfav: false,
-      brand: "Srhythm",
-      color: "White",
-      size: "xl",
-      weight: "50g",
-      dimensions: "15x20",
-      description:
-        "this is samsung A57 2019 was created by samsung db beusdbhjcksjqvjbjkseqhviuesjbvu ",
-    },
-    {
-      title: "TOZO T10",
-      price: "$24.99",
-      gatag: "5G 12GB/512GB 200Mp ",
-      image: 2,
-      id: 2,
-      stars: 3,
-      shipping: "$186",
-      isfav: false,
-      brand: "TOZO",
-      color: "Black",
-      size: "xl",
-      weight: "50g",
-      dimensions: "15x20",
-      description:
-        "this is samsung A57 2019 was created by samsung db beusdbhjcksjqvjbjkseqhviuesjbvu ",
-    },
-    {
-      title: "Galaxy Watch 5 Pro",
-      price: "$399.99",
-      gatag: "5G 8GB/256GB 64Mp",
-      image: 3,
-      id: 3,
-      stars: 4,
-      shipping: "$56",
-      isfav: false,
-      brand: "Samsung",
-      color: "Black",
-      size: "xl",
-      weight: "50g",
-      dimensions: "15x20",
-      description:
-        "this is samsung A57 2019 was created by samsung db beusdbhjcksjqvjbjkseqhviuesjbvu ",
-    },
-    {
-      title: "T-Rex Pro",
-      price: "$138.99",
-      gatag: "5G 8GB/256GB  60Mp ",
-      image: 4,
-      id: 4,
-      stars: 4,
-      shipping: "$63",
-      isfav: false,
-      brand: "T-Rex",
-      color: "Black",
-      size: "xl",
-      weight: "50g",
-      dimensions: "15x20",
-      description:
-        "this is samsung A57 2019 was created by samsung db beusdbhjcksjqvjbjkseqhviuesjbvu ",
-    },
-    {
-      title: "Srhythm NC10",
-      price: "$79.99",
-      gatag: "5G 8GB/256GB  60Mp ",
-      image: 1,
-      id: 5,
-      stars: 4,
-      shipping: "$32",
-      isfav: false,
-      brand: "Srhythm",
-      color: "White",
-      size: "xl",
-      weight: "50g",
-      dimensions: "15x20",
-      description:
-        "this is samsung A57 2019 was created by samsung db beusdbhjcksjqvjbjkseqhviuesjbvu ",
-    },
-  ]);
+
   // prettier-ignore-end
 
-  let toggleFav = (id, isFav) => {
-    let newProducts = Products.map((item) => {
-      if (item.id === id) {
-        item.isfav = !isFav;
-      }
-      return item;
-    });
-    setProducts(newProducts);
-  };
 
   //for hide element for specific route
   let hideloc = useLocation();
@@ -182,9 +87,7 @@ export default function App() {
                   )}{" "}
                   <Home
                     updateDarkMode={darkmode}
-                    toggleFav={toggleFav}
-                    isfav={Products.isfav}
-                    Products={Products}
+               
                     backendData={backendData}
                     isLoggedIn={isLoggedIn}
                   />
@@ -202,9 +105,8 @@ export default function App() {
                   />
                   <ProductsPage
                     updateDarkMode={darkmode}
-                    toggleFav={toggleFav}
-                    isfav={Products.isfav}
-                    Products={Products}
+                  
+                  
                     isLoggedIn={isLoggedIn}
                   />
                 </Fragment>
@@ -219,11 +121,7 @@ export default function App() {
                     updateDarkMode={updateDarkMode}
                     isLoggedIn={isLoggedIn}
                   />
-                  <Product
-                    updateDarkMode={darkmode}
-                    Products={Products}
-                    isLoggedIn={isLoggedIn}
-                  />
+                  <Product updateDarkMode={darkmode} isLoggedIn={isLoggedIn} />
                 </Fragment>
               }
             />
@@ -237,9 +135,7 @@ export default function App() {
                   />
                   <Signup
                     updateDarkMode={darkmode}
-                    toggleFav={toggleFav}
-                    isfav={Products.isfav}
-                    Products={Products}
+                  
                     isLoggedIn={isLoggedIn}
                   />
                 </Fragment>
@@ -298,9 +194,7 @@ export default function App() {
                   />
                   <Login
                     updateDarkMode={darkmode}
-                    toggleFav={toggleFav}
-                    isfav={Products.isfav}
-                    Products={Products}
+                 
                     isLoggedIn={isLoggedIn}
                   />
                 </Fragment>
@@ -317,9 +211,7 @@ export default function App() {
                   />
                   <Account
                     updateDarkMode={darkmode}
-                    toggleFav={toggleFav}
-                    isfav={Products.isfav}
-                    Products={Products}
+                 
                     isLoggedIn={isLoggedIn}
                   />
                 </Fragment>
