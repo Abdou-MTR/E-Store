@@ -4,12 +4,16 @@ import React, { useState } from "react";
 import axios from "axios";
 export default function CardProduct(props) {
   const [liked, setLiked] = useState(false);
-
+  let email = localStorage.getItem("email");
   const likedHandler = async () => {
+    console.log("product is ", props.id);
+    console.log("email is ", email);
+
     try {
       // Make a request to your backend to add/remove the product from favorites
       await axios.post("http://localhost:5000/api/favorites", {
         productId: props.id,
+        email: email,
       });
 
       // Toggle the liked state locally

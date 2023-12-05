@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { Toaster } from "react-hot-toast";
-import axios from "axios";
+
 
 const EmailVerify = () => {
   const navigate = useNavigate();

@@ -1,7 +1,11 @@
 import React from "react";
 import Image from "../images/Avartar.jpg";
 import Swal from "sweetalert2";
-export default function account() {
+import { useNavigate } from "react-router-dom";
+
+export default function Account() {
+  const navigate = useNavigate();
+
   let name = localStorage.getItem("fname");
   let email = localStorage.getItem("email");
   const askingLogout = () => {
@@ -17,7 +21,7 @@ export default function account() {
         HandleLogout();
       } else if (result.isDenied) {
         Swal.fire("Changes are not saved", "", "info");
-        window.location = "/account";
+        navigate("/account");
       }
     });
   };
@@ -25,7 +29,7 @@ export default function account() {
   const HandleLogout = () => {
     localStorage.removeItem("token");
 
-    window.location = "/";
+    navigate("/");
   };
 
   return (

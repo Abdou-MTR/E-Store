@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import login from "../../images/Login.svg";
 export default function Signin(props) {
+  const navigate = useNavigate();
   const [data, setData] = useState({
     email: "",
     password: "",
@@ -24,7 +25,7 @@ export default function Signin(props) {
       const url = "http://localhost:5000/api/auth";
       const { data: res } = await axios.post(url, data);
       localStorage.setItem("token", res.data);
-      window.location = "/";
+      navigate("/");
     } catch (error) {
       if (
         error.response &&
